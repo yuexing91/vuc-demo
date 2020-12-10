@@ -1,2 +1,8 @@
 # vuc-demo
-vuc-designer-demo
+> vuc-designer的demo
+
+```
+npm install 
+
+npm run serve 
+```

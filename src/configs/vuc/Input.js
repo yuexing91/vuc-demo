@@ -1,12 +1,44 @@
+import iview from 'view-design';
+import { createItems, getSizeEditor } from '../utils';
+
+iview.Input.mixins = iview.Input.mixins || [];
+
+function mounted() {
+  this.$options.mounted[this.$options.mounted.length - 1].call(this);
+}
+
+iview.Input.mixins.push({
+  watch: {
+    prefix: mounted,
+    suffix: mounted,
+  },
+});
+
 export default {
   id: 'i-input',
   name: '输入框',
   eventTypes: [],
   type: ['input'],
   props: {
+    type: {
+      label: '类型',
+      editors: {
+        type: 'select',
+        props: {
+          items: createItems(`text,password,textarea,url,email,date,number,tel`),
+        },
+      },
+      help: `输入框类型，可选值为 <code>text</code> <code>password</code>
+            <code>textarea</code> <code>url</code> <code>email</code>
+            <code>date</code> <code>number</code> <code>tel</code>`,
+    },
     value: {
       label: '值',
       editors: 'text',
+    },
+    size: {
+      label: '尺寸',
+      editors: getSizeEditor(),
     },
     placeholder: {
       label: '占位文本	',
@@ -19,6 +51,7 @@ export default {
     disabled: {
       label: '禁用',
       editors: 'boolean',
+      advanced: true,
     },
     readonly: {
       label: '只读',
@@ -35,6 +68,7 @@ export default {
     prefix: {
       label: '头部图标',
       editors: 'icon',
+      advanced: true,
     },
     suffix: {
       label: '尾部图标',
@@ -84,5 +118,14 @@ export default {
       },
       advanced: true,
     },
+    /*elementId:{
+      label: 'id',
+    },
+    spellcheck:{
+      label: 'spellcheck',
+    },
+    wrap:{
+      label: 'wrap',
+    }*/
   },
 };

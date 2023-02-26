@@ -31,7 +31,7 @@
   import 'view-design/dist/styles/iview.css';
   import 'vuc-designer/dist/styles/vuc.css';
 
-  import FileSaver from 'FileSaver';
+  import FileSaver from 'file-saver';
   import { vueContent } from './template';
 
   import confgs from './configs';
